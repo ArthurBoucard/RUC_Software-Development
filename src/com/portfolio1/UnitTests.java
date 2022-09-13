@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,17 +35,17 @@ public class UnitTests {
         assertEquals(30, v1.draft);
         assertEquals(50, v1.length);
         assertEquals(20, v1.width);
-        assertEquals(10, v1.maxCargoSize);
-        assertArrayEquals(new int[]{0}, v1.cargo);
+        assertEquals(10, v1.cargoList.get(0).maxSize);
+        assertEquals(0, v1.cargoList.get(0).quantity);
         v1.loadingCargo(8);
-        assertArrayEquals(new int[]{8}, v1.cargo);
+        assertEquals(8, v1.cargoList.get(0).quantity);
         assertArrayEquals(new int[]{2}, v1.utilityLevelOfCapacity());
 
         // Overriding / Overloading Test
         containerVessel v2 = new containerVessel("SG", 30, 50, 20, 2, 10);
-        assertArrayEquals(new int[]{0, 0}, v2.cargo);
+        assertEquals(0, v2.cargoList.get(1).quantity);
         v2.loadingCargo(1, 8);
-        assertArrayEquals(new int[]{0, 8}, v2.cargo);
+        assertEquals(8, v2.cargoList.get(1).quantity);
 
         // Error Handling Test
         containerVessel v3 = new containerVessel("SG", 30, 50, 20, 2, 10);
@@ -55,6 +57,7 @@ public class UnitTests {
         assertEquals("Cargo 1 doesn't have the space available for this quantity.", err.toString());
     }
 
+    // need to finish changing test below to arraylist uses -> then remove all cargo object in boat class
     @Test
     void tankerTest() {
         tanker t1 = new tanker("FR", 30, 50, 20, 5, 100);
