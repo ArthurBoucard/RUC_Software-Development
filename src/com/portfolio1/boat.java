@@ -1,9 +1,7 @@
 package com.portfolio1;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Vector;
 
 public class boat {
     public String flag;
