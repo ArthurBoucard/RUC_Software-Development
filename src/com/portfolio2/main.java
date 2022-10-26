@@ -36,7 +36,8 @@ public class main {
         int price = 0;
 
         for (int i = 0; i < ports.size(); i++)
-            price += Math.abs(ports.get(i).TEU) * 100;
+            if (ports.get(i).TEU > 0)
+                price += ports.get(i).TEU * 100;
         System.out.println("Reverse flow cost is equal to : " + price);
     }
 
